@@ -39,6 +39,7 @@
 #include <linux/skbuff.h>
 #include <linux/uaccess.h>
 #include <linux/uio.h>
+#include <crypto/rng.h>
 
 __noreturn void rust_helper_BUG(void)
 {
@@ -654,6 +655,13 @@ int rust_helper_fs_parse(struct fs_context *fc,
 	return fs_parse(fc, desc, param, result);
 }
 EXPORT_SYMBOL_GPL(rust_helper_fs_parse);
+
+int rust_helper_crypto_rng_get_bytes(struct crypto_rng *tfm,
+				       u8 *rdata, unsigned int dlen)
+{
+	return crypto_rng_get_bytes(tfm,rdata,dlen);
+}
+EXPORT_SYMBOL_GPL(rust_helper_crypto_rng_get_bytes);
 
 /*
  * We use `bindgen`'s `--size_t-is-usize` option to bind the C `size_t` type

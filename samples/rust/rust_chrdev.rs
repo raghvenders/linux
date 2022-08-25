@@ -1,7 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0
-
-//! Rust character device sample.
-
+#![allow(missing_docs)]
 use kernel::prelude::*;
 use kernel::{chrdev, file};
 
