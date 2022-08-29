@@ -124,8 +124,20 @@ impl RustCrypto{
 
            s = crate::bindings::crypto_shash_final(shs_desc, dataptr);
 
-           pr_info!("SHash Final {}", s);
-           pr_info!("{:?}",slice::from_raw_parts_mut(dataptr, 32));
+           pr_info!("SHash Final {}, {:?}", s, *dataptr);
+          
+           let result = CStr::from_char_ptr(core::mem::transmute(dataptr as *const i8));
+
+          pr_info!("Hex for encrypted Buffer {}",result);
+
+
+          pr_info!("Something Wrong {}",result.as_str_unchecked());
+
+
+          
+
+          // pr_info!("{:?}",slice::from_raw_parts_mut(dataptr, 32));
+
            Ok (RustCrypto { is_registered: true})
         }
     }
