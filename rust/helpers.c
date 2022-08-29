@@ -40,6 +40,7 @@
 #include <linux/uaccess.h>
 #include <linux/uio.h>
 #include <crypto/rng.h>
+#include <crypto/hash.h>
 
 __noreturn void rust_helper_BUG(void)
 {
@@ -662,6 +663,15 @@ int rust_helper_crypto_rng_get_bytes(struct crypto_rng *tfm,
 	return crypto_rng_get_bytes(tfm,rdata,dlen);
 }
 EXPORT_SYMBOL_GPL(rust_helper_crypto_rng_get_bytes);
+
+
+int rust_helper_crypto_shash_init(struct shash_desc *desc){
+	return crypto_shash_init(desc);
+}
+EXPORT_SYMBOL_GPL(rust_helper_crypto_shash_init);
+
+
+
 
 /*
  * We use `bindgen`'s `--size_t-is-usize` option to bind the C `size_t` type

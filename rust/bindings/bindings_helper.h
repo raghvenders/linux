@@ -37,7 +37,7 @@
 #include <linux/uaccess.h>
 #include <linux/uio.h>
 #include <uapi/linux/android/binder.h>
-/*#include <crypto/hash.h>  */
+#include <crypto/hash.h>
 /* #include <linux/crypto.h> */
 #include <crypto/rng.h>
 
